@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PhotoDetail from "./components/PhotoDetail";
+import PhotoGallery from "./components/PhotoGallery";
+import "./App.css";
+import HomeScreen from "./components/HomeScreen";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeScreen />,
+  },
+  {
+    path: "/photos",
+    element: <PhotoGallery query="nature" />,
+  },
+  {
+    path: "/photos/:id",
+    element: <PhotoDetail />,
+  },
+]);
+
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </React.StrictMode>
   );
 }
-
-export default App;
