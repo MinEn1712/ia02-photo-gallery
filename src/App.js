@@ -8,15 +8,15 @@ import HomeScreen from "./components/HomeScreen";
 
 const router = createBrowserRouter([
   {
-    path: "/ia02-photo-gallery",
+    path: "/",
     element: <HomeScreen />,
   },
   {
-    path: "/ia02-photo-gallery/photos",
+    path: "/photos",
     element: <PhotoGallery query="nature" />,
   },
   {
-    path: "/ia02-photo-gallery/photos/:id",
+    path: "/photos/:id",
     element: <PhotoDetail />,
   },
 ]);
